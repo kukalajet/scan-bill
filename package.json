@@ -34,7 +34,8 @@
     "react-native-screens": "~3.29.0",
     "react-native-unistyles": "^2.3.0",
     "react-native-vision-camera": "^3.9.0",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "zustand": "^4.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
