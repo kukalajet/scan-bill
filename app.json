@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.jeton.scanbill",
@@ -28,9 +26,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.jeton.scanbill",
-      "permissions": [
-        "android.permission.CAMERA"
-      ]
+      "permissions": ["android.permission.CAMERA"]
     },
     "web": {
       "bundler": "metro",
@@ -42,7 +38,8 @@
       [
         "react-native-vision-camera",
         {
-          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+          "enableCodeScanner": true
         }
       ]
     ],
