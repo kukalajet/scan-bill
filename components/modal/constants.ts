@@ -1,4 +1,0 @@
-const OVERDRAG = 20;
-const DEFAULT_HEIGHT = 256;
-
-export { OVERDRAG, DEFAULT_HEIGHT };
