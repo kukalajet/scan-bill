@@ -1,7 +1,9 @@
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 export default function TabTwoScreen() {
+  const { styles } = useStyles(stylesheet);
   const width = useSharedValue(100);
 
   const handlePress = () => {
@@ -23,11 +25,12 @@ export default function TabTwoScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(({ color }) => ({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: color.bg.surface.active,
   },
   title: {
     fontSize: 20,
@@ -38,4 +41,4 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-});
+}));
