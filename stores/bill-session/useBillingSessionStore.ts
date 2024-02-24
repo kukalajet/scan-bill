@@ -1,12 +1,16 @@
 import { create } from 'zustand';
 
+import { formatToLekCurrency } from '@/utils/format';
+
 type BillingSessionStore = {
+  total: string;
   bills: Bill[];
   addBillFromUrl: (url: string) => void;
   clear: () => void;
 };
 
 const INITIAL_STATE: NonActionProperties<BillingSessionStore> = {
+  total: '0',
   bills: [],
 };
 
@@ -28,7 +32,9 @@ const addBillFromUrl = (
   if (isBillDuplicated) return;
 
   const bills = [...allBills, bill];
-  set({ bills });
+  const total = calculateTotal(bills);
+
+  set({ bills, total });
 };
 
 const extractParamsFromUrl = (url: string) => {
@@ -40,6 +46,13 @@ const extractParamsFromUrl = (url: string) => {
     crtd: params.get('crtd')!,
     prc: params.get('prc')!,
   };
+};
+
+const calculateTotal = (bills: Bill[]): string => {
+  const value = bills.reduce((acc, bill) => acc + parseFloat(bill.prc), 0);
+  const total = formatToLekCurrency(value);
+
+  return total;
 };
 
 const useBillingSessionStore = create<BillingSessionStore>((set, get) => ({

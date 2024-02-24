@@ -10,7 +10,7 @@ import {
 import { useBillingSessionStore } from '@/stores/bill-session';
 
 const ScanScreen: React.FC<unknown> = () => {
-  const bills = useBillingSessionStore((state) => state.bills);
+  const total = useBillingSessionStore((state) => state.total);
   const clearBillingSession = useBillingSessionStore((state) => state.clear);
   const addBillFromUrl = useBillingSessionStore(
     (state) => state.addBillFromUrl,
@@ -51,11 +51,7 @@ const ScanScreen: React.FC<unknown> = () => {
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
         <View style={styles.contentContainer}>
-          <Text>
-            {bills.map((bill) => (
-              <Text>{bill.origin}</Text>
-            ))}
-          </Text>
+          <Text>{total}</Text>
         </View>
       </BottomSheet>
     </>
