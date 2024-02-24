@@ -7847,6 +7847,11 @@ react-native-unistyles@^2.3.0:
   resolved "https://registry.yarnpkg.com/react-native-unistyles/-/react-native-unistyles-2.3.0.tgz#36d5f73512822f6fed3019f231ee85037a9bf867"
   integrity sha512-JvnSvVTovFhJh1eQ9yyDvmaQyeu0YkUOaNxhf8HS6t2UQuLhl8QoRQlAqTT6sRwaH+SjEaCR5GX9nD35chIhDg==
 
+react-native-vision-camera@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-3.9.0.tgz#6a96a6cbad53c2db84d671c388b250327681a553"
+  integrity sha512-q0HejFTS56s5DXWHZhlWLLZMKn/8OXALrqET+FySPIKskwYEdJ5rOV2aDlD6hlo67qCNFGUIMZWGFFc9L2os1g==
+
 react-native-web@~0.19.6:
   version "0.19.10"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.19.10.tgz#5f7205f8909c0889bc89c9fde7c6e287defa7c63"
