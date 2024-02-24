@@ -1,5 +1,5 @@
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import {
   Camera,
@@ -10,7 +10,11 @@ import {
 import { useBillingSessionStore } from '@/stores/bill-session';
 
 const ScanScreen: React.FC<unknown> = () => {
-  const { bills, addBillFromUrl } = useBillingSessionStore();
+  const bills = useBillingSessionStore((state) => state.bills);
+  const clearBillingSession = useBillingSessionStore((state) => state.clear);
+  const addBillFromUrl = useBillingSessionStore(
+    (state) => state.addBillFromUrl,
+  );
 
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => [200, '80%'], []);
@@ -27,6 +31,10 @@ const ScanScreen: React.FC<unknown> = () => {
     },
   });
 
+  useEffect(() => {
+    return () => clearBillingSession();
+  }, []);
+
   if (device == null) return <View />;
 
   return (
@@ -39,7 +47,7 @@ const ScanScreen: React.FC<unknown> = () => {
       />
       <BottomSheet
         ref={bottomSheetRef}
-        index={1}
+        index={0}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
         <View style={styles.contentContainer}>
