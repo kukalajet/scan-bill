@@ -12,8 +12,10 @@ export default function TabOneScreen() {
         onPress={() =>
           // router.navigate('scan')
           show({
-            content: <Text style={styles.title}>Test Modal1</Text>,
-            height: '25%',
+            overview: <Text style={styles.title}>Overview</Text>,
+            details: <Text style={styles.title}>Details</Text>,
+            height: '80%',
+            minHeight: 196,
           })
         }
         style={styles.title}>

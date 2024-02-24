@@ -82,6 +82,7 @@ const color = {
           hover: 'rgba(0, 0, 0, 0.08)',
           active: 'rgba(0, 0, 0, 0.11)',
         },
+        full: 'rgba(0, 0, 0, 0)',
       },
     },
     surface: {

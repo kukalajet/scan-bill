@@ -2,11 +2,14 @@ import { createContext, useState } from 'react';
 import type { FC, PropsWithChildren } from 'react';
 
 type ModalConfig = {
-  content: React.ReactElement;
+  overview: React.ReactElement;
+  details: React.ReactElement;
   height?: `${number}%` | number;
+  minHeight?: `${number}%` | number;
 };
 
-type ShowModalParams = Pick<ModalConfig, 'content'> & Partial<ModalConfig>;
+type ShowModalParams = Pick<ModalConfig, 'overview' | 'details'> &
+  Partial<ModalConfig>;
 
 type ModalContextProps = {
   config: ModalConfig | null;
@@ -35,3 +38,4 @@ const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
 };
 
 export { ModalContext, ModalProvider };
+export type { ModalConfig };
