@@ -19,7 +19,7 @@ const Overview: React.FC<unknown> = () => {
           </View>
           <View style={styles.info}>
             <Text style={styles.title}>
-              Total bill: <Text style={styles.total}>{total}</Text>
+              Total: <Text style={styles.total}>{total}</Text>
             </Text>
             <Text style={styles.subtitle}>{totalBills} bills scanned</Text>
           </View>
