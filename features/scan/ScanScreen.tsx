@@ -22,13 +22,17 @@ import { useBillingSessionStore } from '@/stores/bill-session';
 
 const ScanScreen: React.FC<unknown> = () => {
   const [isFullScreen, setFullScreen] = useState(false);
+  const totalBills = useBillingSessionStore((state) => state.bills.length);
   const clearBillingSession = useBillingSessionStore((state) => state.clear);
   const addBillFromUrl = useBillingSessionStore(
     (state) => state.addBillFromUrl,
   );
 
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => [168, '80%'], []);
+  const snapPoints = useMemo(() => {
+    if (totalBills === 0) return [168];
+    return [168, '80%'];
+  }, [totalBills]);
   const handleSheetChanges = useCallback((index: number) => {
     if (index === 1) {
       setFullScreen(true);
