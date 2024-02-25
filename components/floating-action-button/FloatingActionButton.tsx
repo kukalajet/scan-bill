@@ -47,15 +47,15 @@ const FloatingActionButton: FC<FloatingActionButtonProps> = ({ onPress }) => {
         },
         animatedStyle,
       ]}>
-      <Scan width={24} height={24} />
+      <Scan width={40} height={40} />
     </AnimatedPressable>
   );
 };
 
 const stylesheet = createStyleSheet(({ height, width, space, border }) => ({
   container: {
-    width: width[1600],
-    height: height[1600],
+    width: width[2000],
+    height: height[2000],
     zIndex: 2,
     flex: 1,
     right: space[600],
