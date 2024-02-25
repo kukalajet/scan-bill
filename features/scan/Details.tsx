@@ -4,6 +4,7 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { BillListItem } from './BillListItem';
 
+import { Divider } from '@/components/divider';
 import { useBillingSessionStore } from '@/stores/bill-session';
 
 const Details: React.FC<unknown> = () => {
@@ -18,13 +19,14 @@ const Details: React.FC<unknown> = () => {
           <BillListItem bill={item} index={index} />
         )}
         keyExtractor={(item) => item.origin}
+        ItemSeparatorComponent={() => <Divider style={styles.divider} />}
         style={styles.list}
       />
     </Animated.View>
   );
 };
 
-const stylesheet = createStyleSheet(({ color }) => ({
+const stylesheet = createStyleSheet(({ color, space }) => ({
   container: {
     flex: 1,
     width: '100%',
@@ -34,6 +36,9 @@ const stylesheet = createStyleSheet(({ color }) => ({
   },
   list: {
     width: '100%',
+  },
+  divider: {
+    marginHorizontal: space[400],
   },
 }));
 
