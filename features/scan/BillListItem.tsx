@@ -20,7 +20,9 @@ const BillListItem: React.FC<BillListItemProps> = ({ bill, index }) => {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Text style={styles.icon}>#{index + 1}</Text>
+        <View style={styles.icon}>
+          <Text style={styles.index}>#{index + 1}</Text>
+        </View>
         <View style={styles.info}>
           <Text style={styles.title}>
             Bill: <Text style={styles.total}>{price}</Text>
@@ -47,14 +49,16 @@ const stylesheet = createStyleSheet(({ color, space, text }) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  info: { paddingStart: 16 },
+  info: { paddingStart: space['400'] },
   icon: {
-    padding: space['400'],
+    height: 56,
+    width: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: space['300'],
     backgroundColor: color.bg.fill.magic.secondary.active,
-    color: color.text.magic.secondary,
-    ...text.body.lg,
   },
+  index: { color: color.text.magic.secondary, ...text.heading.md },
   title: {
     ...text.body.lg,
     color: color.text.default,

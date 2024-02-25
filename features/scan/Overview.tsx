@@ -44,7 +44,10 @@ const stylesheet = createStyleSheet(({ space, text, color }) => ({
     justifyContent: 'space-between',
   },
   icon: {
-    padding: space['300'],
+    height: 56,
+    width: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: space['300'],
     backgroundColor: color.icon.active,
   },

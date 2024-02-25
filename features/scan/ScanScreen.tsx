@@ -81,23 +81,11 @@ const ScanScreen: React.FC<unknown> = () => {
         index={0}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
-        <View style={styles.contentContainer}>
-          {!isFullScreen && <Overview />}
-          {isFullScreen && <Details />}
-        </View>
+        {!isFullScreen && <Overview />}
+        {isFullScreen && <Details />}
       </BottomSheet>
     </GestureHandlerRootView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-});
 
 export { ScanScreen };
