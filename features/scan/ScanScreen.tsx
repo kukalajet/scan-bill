@@ -1,5 +1,11 @@
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
@@ -9,11 +15,13 @@ import {
   useCodeScanner,
 } from 'react-native-vision-camera';
 
+import { Details } from './Details';
 import { Overview } from './Overview';
 
 import { useBillingSessionStore } from '@/stores/bill-session';
 
 const ScanScreen: React.FC<unknown> = () => {
+  const [isFullScreen, setFullScreen] = useState(false);
   const clearBillingSession = useBillingSessionStore((state) => state.clear);
   const addBillFromUrl = useBillingSessionStore(
     (state) => state.addBillFromUrl,
@@ -22,7 +30,11 @@ const ScanScreen: React.FC<unknown> = () => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => [168, '80%'], []);
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    if (index === 1) {
+      setFullScreen(true);
+    } else {
+      setFullScreen(false);
+    }
   }, []);
 
   const { hasPermission, requestPermission } = useCameraPermission();
@@ -60,7 +72,8 @@ const ScanScreen: React.FC<unknown> = () => {
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
         <View style={styles.contentContainer}>
-          <Overview />
+          {!isFullScreen && <Overview />}
+          {isFullScreen && <Details />}
         </View>
       </BottomSheet>
     </GestureHandlerRootView>
