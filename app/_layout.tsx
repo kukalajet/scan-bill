@@ -4,8 +4,6 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-import { Modal, ModalProvider } from '@/components/modal';
 import '@/styles/unistyles';
 
 export { ErrorBoundary } from 'expo-router';
@@ -41,15 +39,10 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ModalProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="scan" options={{ headerShown: false }} />
-        </Stack>
-        <Modal />
-      </ModalProvider>
-    </GestureHandlerRootView>
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      <Stack.Screen name="scan" options={{ headerShown: false }} />
+    </Stack>
   );
 }

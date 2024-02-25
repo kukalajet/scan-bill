@@ -1,6 +1,7 @@
 import BottomSheet from '@gorhom/bottom-sheet';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   Camera,
   useCameraDevice,
@@ -39,7 +40,7 @@ const ScanScreen: React.FC<unknown> = () => {
   if (device == null) return <View />;
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <Camera
         style={StyleSheet.absoluteFill}
         device={device}
@@ -55,7 +56,7 @@ const ScanScreen: React.FC<unknown> = () => {
           <Overview />
         </View>
       </BottomSheet>
-    </>
+    </GestureHandlerRootView>
   );
 };
 
