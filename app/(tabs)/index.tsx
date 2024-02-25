@@ -1,13 +1,18 @@
 import { router } from 'expo-router';
 import { Text, View, StyleSheet } from 'react-native';
 
+import { FloatingActionButton } from '@/components/floating-action-button';
+
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Text onPress={() => router.navigate('scan')} style={styles.title}>
-        Tab One
-      </Text>
-    </View>
+    <>
+      <FloatingActionButton onPress={() => router.navigate('scan')} />
+      <View style={styles.container}>
+        <Text onPress={() => router.navigate('scan')} style={styles.title}>
+          Tab One
+        </Text>
+      </View>
+    </>
   );
 }
 
