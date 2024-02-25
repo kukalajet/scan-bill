@@ -1,4 +1,4 @@
-const currencyFormatter = new Intl.NumberFormat('sq-AL', {
+const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'ALL',
 });

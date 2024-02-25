@@ -14,11 +14,13 @@ const Overview: React.FC<unknown> = () => {
       <View style={styles.row}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <View style={styles.icon}>
-            <Bill height={32} width={32} />
+            <Bill height={28} width={28} />
           </View>
-          <View style={{ paddingStart: 8 }}>
-            <Text>Total bill: {total}</Text>
-            <Text>Total bills: {totalBills}</Text>
+          <View style={styles.info}>
+            <Text style={styles.title}>
+              Total bill: <Text style={styles.total}>{total}</Text>
+            </Text>
+            <Text style={styles.subtitle}>{totalBills} bills scanned</Text>
           </View>
         </View>
         <View />
@@ -27,10 +29,11 @@ const Overview: React.FC<unknown> = () => {
   );
 };
 
-const stylesheet = createStyleSheet(({ space, color }) => ({
+const stylesheet = createStyleSheet(({ space, text, color }) => ({
   container: {
-    height: 196,
-    padding: space['200'],
+    height: 168,
+    paddingVertical: space['400'],
+    paddingHorizontal: space['600'],
     backgroundColor: color.bg.surface.default,
   },
   row: {
@@ -40,9 +43,23 @@ const stylesheet = createStyleSheet(({ space, color }) => ({
     justifyContent: 'space-between',
   },
   icon: {
-    padding: space['400'],
+    padding: space['300'],
     borderRadius: space['300'],
     backgroundColor: color.icon.active,
+  },
+  info: {
+    paddingStart: space['400'],
+  },
+  title: {
+    ...text.body.lg,
+    color: color.text.default,
+  },
+  subtitle: {
+    ...text.body.md,
+    color: color.text.secondary,
+  },
+  total: {
+    ...text.heading.md,
   },
 }));
 

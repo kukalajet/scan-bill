@@ -20,7 +20,7 @@ const ScanScreen: React.FC<unknown> = () => {
   );
 
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => [200, '80%'], []);
+  const snapPoints = useMemo(() => [168, '80%'], []);
   const handleSheetChanges = useCallback((index: number) => {
     console.log('handleSheetChanges', index);
   }, []);
