@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   Camera,
   useCameraDevice,
+  useCameraPermission,
   useCodeScanner,
 } from 'react-native-vision-camera';
 
@@ -24,7 +25,9 @@ const ScanScreen: React.FC<unknown> = () => {
     console.log('handleSheetChanges', index);
   }, []);
 
+  const { hasPermission, requestPermission } = useCameraPermission();
   const device = useCameraDevice('back');
+
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
     onCodeScanned: (codes) => {
@@ -34,6 +37,10 @@ const ScanScreen: React.FC<unknown> = () => {
   });
 
   useEffect(() => {
+    if (!hasPermission) {
+      requestPermission();
+    }
+
     return () => clearBillingSession();
   }, []);
 
