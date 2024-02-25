@@ -1,6 +1,8 @@
 import { View, Text } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
+import { Trash } from '@/assets/icons';
+import { useBillingSessionStore } from '@/stores/bill-session';
 import {
   convertISO8601StringToFormattedDate,
   formatToLekCurrency,
@@ -9,19 +11,29 @@ import {
 type BillListItemProps = { bill: Bill; index: number };
 
 const BillListItem: React.FC<BillListItemProps> = ({ bill, index }) => {
-  const { styles } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
+  const deleteBill = useBillingSessionStore((state) => state.deleteBill);
+
   const date = convertISO8601StringToFormattedDate(bill.crtd);
   const price = formatToLekCurrency(Number(bill.prc));
 
   return (
     <View style={styles.container}>
-      <Text style={styles.icon}>#{index + 1}</Text>
-      <View style={styles.info}>
-        <Text style={styles.title}>
-          Bill: <Text style={styles.total}>{price}</Text>
-        </Text>
-        <Text style={styles.subtitle}>{date}</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Text style={styles.icon}>#{index + 1}</Text>
+        <View style={styles.info}>
+          <Text style={styles.title}>
+            Bill: <Text style={styles.total}>{price}</Text>
+          </Text>
+          <Text style={styles.subtitle}>{date}</Text>
+        </View>
       </View>
+      <Trash
+        width={24}
+        height={24}
+        color={theme.color.icon.critical}
+        onPress={() => deleteBill(bill)}
+      />
     </View>
   );
 };
@@ -33,6 +45,7 @@ const stylesheet = createStyleSheet(({ color, space, text }) => ({
     paddingVertical: space['400'],
     paddingHorizontal: space['600'],
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   info: { paddingStart: 16 },
   icon: {

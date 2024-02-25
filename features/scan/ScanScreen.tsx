@@ -60,6 +60,12 @@ const ScanScreen: React.FC<unknown> = () => {
     return () => clearBillingSession();
   }, []);
 
+  useEffect(() => {
+    if (totalBills === 0) {
+      bottomSheetRef.current?.snapToIndex(0);
+    }
+  }, [totalBills]);
+
   if (device == null) return <View />;
 
   return (

@@ -7,6 +7,7 @@ type BillingSessionStore = {
   bills: Bill[];
   addBillFromUrl: (url: string) => void;
   clear: () => void;
+  deleteBill: (bill: Bill) => void;
 };
 
 const INITIAL_STATE: NonActionProperties<BillingSessionStore> = {
@@ -17,6 +18,7 @@ const INITIAL_STATE: NonActionProperties<BillingSessionStore> = {
 const createActions: CreateActions<BillingSessionStore> = (set, get) => ({
   addBillFromUrl: (url) => addBillFromUrl(url, set!, get!),
   clear: () => set!(INITIAL_STATE),
+  deleteBill: (bill) => deleteBill(bill, set!, get!),
 });
 
 const addBillFromUrl = (
@@ -32,6 +34,18 @@ const addBillFromUrl = (
   if (isBillDuplicated) return;
 
   const bills = [...allBills, bill];
+  const total = calculateTotal(bills);
+
+  set({ bills, total });
+};
+
+const deleteBill = (
+  bill: Bill,
+  set: SetStore<BillingSessionStore>,
+  get: GetStore<BillingSessionStore>,
+) => {
+  const allBills = get().bills;
+  const bills = allBills.filter((b) => b.origin !== bill.origin);
   const total = calculateTotal(bills);
 
   set({ bills, total });
