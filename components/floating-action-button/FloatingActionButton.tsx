@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { Pressable } from 'react-native';
+import { Platform, Pressable } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -59,7 +59,7 @@ const stylesheet = createStyleSheet(({ height, width, space, border }) => ({
     zIndex: 2,
     flex: 1,
     right: space[600],
-    bottom: space[800],
+    bottom: Platform.OS === 'ios' ? space[1200] : space[800],
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
