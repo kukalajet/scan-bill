@@ -1,4 +1,5 @@
 import { Text, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { Bill } from '@/assets/icons';
@@ -10,7 +11,7 @@ const Overview: React.FC<unknown> = () => {
   const totalBills = useBillingSessionStore((state) => state.bills.length);
 
   return (
-    <View style={styles.container}>
+    <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.container}>
       <View style={styles.row}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <View style={styles.icon}>
@@ -25,7 +26,7 @@ const Overview: React.FC<unknown> = () => {
         </View>
         <View />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
