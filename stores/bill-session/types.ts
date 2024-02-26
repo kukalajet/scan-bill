@@ -7,3 +7,9 @@ type Bill = {
   prc: string;
   origin: string;
 };
+
+type BillingSession = {
+  total: string;
+  bills: Bill[];
+  id: string;
+};

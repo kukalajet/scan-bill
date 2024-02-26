@@ -1,11 +1,15 @@
 import { create } from 'zustand';
 
 import { formatToLekCurrency } from '@/utils/format';
+import { generateIdentifier } from '@/utils/identifier';
+import { useBillingSessionsStore } from '@/stores/bill-sessions';
 
 type BillingSessionStore = {
   total: string;
   bills: Bill[];
+  id: string;
   addBillFromUrl: (url: string) => void;
+  storeSession: () => void;
   clear: () => void;
   deleteBill: (bill: Bill) => void;
 };
@@ -13,12 +17,14 @@ type BillingSessionStore = {
 const INITIAL_STATE: NonActionProperties<BillingSessionStore> = {
   total: '0',
   bills: [],
+  id: generateIdentifier(),
 };
 
 const createActions: CreateActions<BillingSessionStore> = (set, get) => ({
   addBillFromUrl: (url) => addBillFromUrl(url, set!, get!),
-  clear: () => set!(INITIAL_STATE),
   deleteBill: (bill) => deleteBill(bill, set!, get!),
+  storeSession: () => storeSession(get!),
+  clear: () => set!(INITIAL_STATE),
 });
 
 const addBillFromUrl = (
@@ -49,6 +55,11 @@ const deleteBill = (
   const total = calculateTotal(bills);
 
   set({ bills, total });
+};
+
+const storeSession = (get: GetStore<BillingSessionStore>) => {
+  const { id, bills, total } = get();
+  useBillingSessionsStore.getState().addSession({ id, bills, total });
 };
 
 const extractParamsFromUrl = (url: string) => {

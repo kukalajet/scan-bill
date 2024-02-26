@@ -66,16 +66,23 @@ const ScanScreen: React.FC<unknown> = () => {
     }
   }, [totalBills]);
 
-  if (device == null) return <View />;
+  // wip
+  useEffect(() => {
+    addBillFromUrl(
+      'https://efiskalizimi-app.tatime.gov.al/invoice-check/#/verify?iic=48294F85B7937A48B2FE89B39026987D&tin=L02225003J&crtd=2023-11-21T15:51:30%2001:00&prc=349.00',
+    );
+  }, []);
+
+  // if (device == null) return <View />;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Camera
+      {/* <Camera
         style={StyleSheet.absoluteFill}
         device={device}
         codeScanner={codeScanner}
         isActive
-      />
+      /> */}
       <BottomSheet
         ref={bottomSheetRef}
         index={0}
