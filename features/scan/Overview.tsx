@@ -2,6 +2,8 @@ import { Text, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
+import { OverviewSaveButton } from './OverviewSaveButton';
+
 import { Bill } from '@/assets/icons';
 import { useBillingSessionStore } from '@/stores/bill-session';
 
@@ -24,7 +26,7 @@ const Overview: React.FC<unknown> = () => {
             <Text style={styles.subtitle}>{totalBills} bills scanned</Text>
           </View>
         </View>
-        <View />
+        <OverviewSaveButton onPress={() => {}} />
       </View>
     </Animated.View>
   );
