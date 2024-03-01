@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
+import { useBillingSessionsStore } from '@/stores/bill-sessions';
 import { formatToLekCurrency } from '@/utils/format';
 import { generateIdentifier } from '@/utils/identifier';
-import { useBillingSessionsStore } from '@/stores/bill-sessions';
 
 type BillingSessionStore = {
   total: string;

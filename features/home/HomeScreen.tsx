@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { FloatingActionButton } from '@/components/floating-action-button';
+import * as storage from '@/storages';
 import { useBillingSessionsStore } from '@/stores/bill-sessions';
 
 const HomeScreen: React.FC<unknown> = () => {
@@ -19,7 +20,7 @@ const HomeScreen: React.FC<unknown> = () => {
     <>
       <FloatingActionButton onPress={() => router.navigate('scan')} />
       <View style={styles.container}>
-        <Text>HOME!</Text>
+        <Text onPress={() => storage.reset()}>HOME!</Text>
         <Text>{JSON.stringify(sessions)}</Text>
       </View>
     </>

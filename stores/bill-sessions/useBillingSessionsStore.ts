@@ -42,9 +42,13 @@ const addSession = (
   set: SetStore<BillingSessionsStore>,
   get: GetStore<BillingSessionsStore>,
 ) => {
-  console.log('adding session', session);
-  const sessions = [...get().sessions, session];
-  console.log('sessions', sessions);
+  const isSessionExisting = get().sessions.some((s) => s.id === session.id);
+  const sessions = [
+    ...(isSessionExisting
+      ? get().sessions.filter((s) => s.id !== session.id)
+      : get().sessions),
+    session,
+  ];
   storage.store(
     BillSessionsConstants.BILL_SESSIONS_KEY,
     JSON.stringify(sessions),

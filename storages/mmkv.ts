@@ -13,4 +13,8 @@ const retrieve = <T>(key: string): T => {
   return JSON.parse(value) as T;
 };
 
-export { store, retrieve };
+const reset = () => {
+  storage.clearAll();
+};
+
+export { store, retrieve, reset };
