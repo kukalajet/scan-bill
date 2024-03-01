@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import * as storage from '@/storages';
+
 type BillingSessionsStore = {
   sessions: BillingSession[];
   status: StoreFieldStatus;
@@ -9,9 +11,13 @@ type BillingSessionsStore = {
   clear: () => void;
 };
 
+enum BillSessionsConstants {
+  BILL_SESSIONS_KEY = 'bill-sessions',
+}
+
 const INITIAL_STATE: NonActionProperties<BillingSessionsStore> = {
   sessions: [],
-  status: 'initial',
+  status: 'success',
 };
 
 const createActions: CreateActions<BillingSessionsStore> = (set, get) => ({
@@ -25,11 +31,10 @@ const loadSessions = (
   set: SetStore<BillingSessionsStore>,
   get: GetStore<BillingSessionsStore>,
 ) => {
-  set({ status: 'loading' });
-
-  setTimeout(() => {
-    set({ sessions: [], status: 'success' });
-  }, 1000);
+  const sessions = storage.retrieve<BillingSessionsStore['sessions']>(
+    BillSessionsConstants.BILL_SESSIONS_KEY,
+  );
+  set({ sessions });
 };
 
 const addSession = (
@@ -37,7 +42,14 @@ const addSession = (
   set: SetStore<BillingSessionsStore>,
   get: GetStore<BillingSessionsStore>,
 ) => {
+  console.log('adding session', session);
   const sessions = [...get().sessions, session];
+  console.log('sessions', sessions);
+  storage.store(
+    BillSessionsConstants.BILL_SESSIONS_KEY,
+    JSON.stringify(sessions),
+  );
+
   set({ sessions });
 };
 
@@ -47,6 +59,11 @@ const deleteSession = (
   get: GetStore<BillingSessionsStore>,
 ) => {
   const sessions = get().sessions.filter((s) => s.id !== session.id);
+  storage.store(
+    BillSessionsConstants.BILL_SESSIONS_KEY,
+    JSON.stringify(sessions),
+  );
+
   set({ sessions });
 };
 

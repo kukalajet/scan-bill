@@ -11,6 +11,7 @@ const Overview: React.FC<unknown> = () => {
   const { styles } = useStyles(stylesheet);
   const total = useBillingSessionStore((state) => state.total);
   const totalBills = useBillingSessionStore((state) => state.bills.length);
+  const storeSession = useBillingSessionStore((state) => state.storeSession);
 
   return (
     <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.container}>
@@ -26,7 +27,7 @@ const Overview: React.FC<unknown> = () => {
             <Text style={styles.subtitle}>{totalBills} bills scanned</Text>
           </View>
         </View>
-        <OverviewSaveButton onPress={() => {}} />
+        <OverviewSaveButton onPress={storeSession} />
       </View>
     </Animated.View>
   );

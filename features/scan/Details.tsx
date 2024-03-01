@@ -14,8 +14,9 @@ const AnimatedBottomSheetFlatList =
 
 const Details: React.FC<unknown> = () => {
   const { styles } = useStyles(stylesheet);
-  const bills = useBillingSessionStore((state) => state.bills);
   const { bottom } = useSafeAreaInsets();
+  const bills = useBillingSessionStore((state) => state.bills);
+  const storeSession = useBillingSessionStore((state) => state.storeSession);
 
   return (
     <>
@@ -30,7 +31,7 @@ const Details: React.FC<unknown> = () => {
         exiting={FadeOut}
         style={styles.list}
       />
-      <DetailsSaveButton onPress={() => {}} style={styles.button(bottom)} />
+      <DetailsSaveButton onPress={storeSession} style={styles.button(bottom)} />
     </>
   );
 };
