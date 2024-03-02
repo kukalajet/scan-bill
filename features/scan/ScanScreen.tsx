@@ -67,22 +67,23 @@ const ScanScreen: React.FC<unknown> = () => {
   }, [totalBills]);
 
   // wip
-  useEffect(() => {
-    addBillFromUrl(
-      'https://efiskalizimi-app.tatime.gov.al/invoice-check/#/verify?iic=48294F85B7937A48B2FE89B39026987D&tin=L02225003J&crtd=2023-11-21T15:51:30%2001:00&prc=349.00',
-    );
-  }, []);
+  // useEffect(() => {
+  //   addBillFromUrl(
+  //     // 'https://efiskalizimi-app.tatime.gov.al/invoice-check/#/verify?iic=48294F85B7937A48B2FE89B39026987D&tin=L02225003J&crtd=2023-11-21T15:51:30%2001:00&prc=349.00',
+  //     'https://efiskalizimi-app.tatime.gov.al/invoice-check/#/verify?iic=0BCAEE1D2590689FA79B56B02FB9262D&tin=K81309053S&crtd=2023-07-27T08:16:16%2002:00&ord=138070&bu=zt372qq005&cr=qt814mw403&sw=mp614uk294&prc=210.00',
+  //   );
+  // }, []);
 
-  // if (device == null) return <View />;
+  if (device == null) return <View />;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {/* <Camera
+      <Camera
         style={StyleSheet.absoluteFill}
         device={device}
         codeScanner={codeScanner}
         isActive
-      /> */}
+      />
       <BottomSheet
         ref={bottomSheetRef}
         index={0}

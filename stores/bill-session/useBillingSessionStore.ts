@@ -59,7 +59,8 @@ const deleteBill = (
 
 const storeSession = (get: GetStore<BillingSessionStore>) => {
   const { id, bills, total } = get();
-  useBillingSessionsStore.getState().addSession({ id, bills, total });
+  const date = new Date().toISOString();
+  useBillingSessionsStore.getState().addSession({ id, bills, total, date });
 };
 
 const extractParamsFromUrl = (url: string) => {

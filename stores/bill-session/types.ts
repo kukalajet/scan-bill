@@ -12,4 +12,5 @@ type BillingSession = {
   total: string;
   bills: Bill[];
   id: string;
+  date: string;
 };
